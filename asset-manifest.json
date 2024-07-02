@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/TodoList.github.io/static/css/main.cb1b5391.css",
+    "main.js": "/TodoList.github.io/static/js/main.fbb4a4dd.js",
+    "index.html": "/TodoList.github.io/index.html",
+    "main.cb1b5391.css.map": "/TodoList.github.io/static/css/main.cb1b5391.css.map",
+    "main.fbb4a4dd.js.map": "/TodoList.github.io/static/js/main.fbb4a4dd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cb1b5391.css",
+    "static/js/main.fbb4a4dd.js"
+  ]
+}
