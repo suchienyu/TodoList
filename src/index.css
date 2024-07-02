@@ -1,13 +1,176 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: #FFD2D2;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container{
+    position: absolute;
+    top: 10%;
+    left:50%;
+    width: 20rem;
+    transform: translateX(-50%);
+}
+
+h1{
+    text-align: center;
+    font-weight: 700;
+    font-size: 150%;
+    margin-bottom: 1.5em;
+    padding-bottom: 0.4em;
+    /* border-bottom: 2px solid #ffffff; */
+}
+
+.fa, .fas{
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* =======
+form
+==========*/
+
+/* text */
+.input-text{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 20rem;
+    padding-bottom:.5em;
+}
+
+.text{
+    text-indent: 10px;
+    padding: 1em;
+    background-color: #F9F9F9;
+    border: none;
+    border-radius: 30px; 
+    width: 25rem;
+    outline: none;
+}
+
+.add-button{
+    right: 20%;
+    transform: rotate(45deg);
+    font-size: 20px;
+    position: relative;
+    border: none;
+    cursor: pointer;
+    background-color: #ffffff;
+    outline: none;
+    counter-increment: #1b7e7e;
+}
+
+::placeholder{
+    color: #8997ad;
+ }
+
+/* option */
+
+.input-option{
+    text-align: left;
+    padding: .5em;
+    text-align-last: left;
+    text: size 10px;
+
+}
+
+select{
+    border: 0;
+    margin: 15px;
+    padding-left: 15px;
+    font-weight: 700;
+    font-size: 15px;
+    outline: none;
+    cursor: pointer;
+    /* direction: ltr; */
+    background-color: #ffffff;
+}
+
+option{
+    direction: ltr;
+}
+
+/* todo-list */
+.todo{
+    width: 20rem;
+    display: flex;
+    width: 20rem;
+    align-items: center;
+    padding: .7em .15em;
+    margin:5px 0;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.todo-list{
+    min-width: 70%;
+    list-style: none;
+}
+
+.todo-item{
+    flex: 1;
+    padding-left: 1em;
+    color: #1B7E7E;
+    margin:0 1rem;
+    
+}
+
+ul{
+    padding: 0;
+}
+
+.trash-btn .fas{
+  display: block;
+  font-weight: 100;
+  padding: .1em .25em;
+  margin-left: 1em;
+    border: none;
+    background-color:#ffffff;
+    color: black;
+    outline: none;
+    
+}
+.trash-btn{
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.edit-btn .fas{
+  display: block;
+    font-weight: 100;
+    padding: .1em .25em;
+    margin-left: 1em;
+    border: none;
+    border-radius: 7px;
+    background-color: #D6F0F0;
+    color: #D6F0F0;
+    outline: none;
+    width: 30px;
+    height: 30px;
+}
+
+.check-btn{
+    display: block;
+    font-weight: 100;
+    padding: .1em .25em;
+    margin-left: 1em;
+    border: none;
+    border-radius: 7px;
+    background-color: #D6F0F0;
+    color: #D6F0F0;
+    outline: none;
+    width: 30px;
+    height: 30px;
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.completed-checkbox{
+    color:#fff;
+
 }
