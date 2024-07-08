@@ -3,6 +3,7 @@ import Todo from "./Todo"
 import '../index.css'
 
 const TodoList = ({setTodos, todos, filteredTodos}) => {
+    console.log('filteredTodos: ',filteredTodos)
     return(
         <div className="todo-container">
             <ul className="todo-list">
@@ -11,7 +12,7 @@ const TodoList = ({setTodos, todos, filteredTodos}) => {
                      setTodos={setTodos} 
                      todo={todo} 
                      todos={todos} 
-                     text={todo.text}
+                     //text={todo.text}
                      key={todo.id} 
                    />
                ))}

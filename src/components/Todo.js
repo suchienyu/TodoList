@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 function Todo({ text, todo, todos, setTodos }) {
     const [isEditing, setIsEditing] = useState(false);
     const [newText, setNewText] = useState(todo.text);
-    function deleteHandleChange(){
-        setTodos(todos.filter((el) => el.id !== todo.id))
-    }
+    // function deleteHandleChange(){
+    //     setTodos(todos.filter((el) => el.id !== todo.id))
+    // }
 
-    function CompleteHandleChange(){
+    const CompleteHandleChange=()=>{
         setTodos(todos.map((item) => {
             if (item.id === todo.id) {
                 return {
@@ -20,7 +20,27 @@ function Todo({ text, todo, todos, setTodos }) {
      }
 
     const deleteHandler = () =>{
-        setTodos(todos.filter(task => task.id !== todo.id));
+        // 发送 DELETE 请求到后端
+        fetch(`http://localhost:5001/api/todos/${todo.id}`, {
+          method: 'DELETE',
+          headers: {
+              'Content-Type': 'application/json'
+              // 如果需要认证或其他头部信息，请在此添加
+          },
+          // 可选：如果后端需要请求体，则添加请求体
+          // body: JSON.stringify({}),
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          // 如果請求成功，更新前端的 todos 狀態
+          setTodos(todos.filter(task => task.id !== todo.id));
+      })
+      .catch(error => {
+          console.error('Error deleting todo:', error);
+          // 處理錯誤情況，例如顯示錯誤消息
+      });
     };
 
     const completeHandler = () => {
@@ -40,13 +60,32 @@ function Todo({ text, todo, todos, setTodos }) {
     };
 
     const saveHandler = () => {
-        setTodos(todos.map(item => {
-          if (item.id === todo.id) {
-            return { ...item, text: newText };
+        // 發送patch請求到後端
+        console.log('todo',todo);
+        fetch(`http://localhost:5001/api/todos/${todo.id}`, {
+          method: 'PATCH',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ text: newText })
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
           }
-          return item;
-        }));
-        setIsEditing(false);
+          // 更新前端的 todos 狀態
+          setTodos(todos.map(item => {
+              if (item.id === todo.id) {
+                  return { ...item, text: newText };
+              }
+              return item;
+          }));
+          setIsEditing(false);
+      })
+      .catch(error => {
+          console.error('Error updating todo:', error);
+          // 處理錯誤情況，例如顯示錯誤消息
+      });
       };
     
     return(
@@ -76,10 +115,12 @@ function Todo({ text, todo, todos, setTodos }) {
                 <i className={`fas fa-check fa-xs ${todo.completed? "completed-checkbox" : ""}`}></i>
             </button>
 
-            <li className={`todo-item ${todo.completed? "completed " : ""}`}>{text}</li>
+            <li className={`todo-item ${todo.completed? "completed " : ""}`}>
+              {todo.text}
+            </li>
             
             <button className="trash-btn" onClick={deleteHandler}>
-                <button className="fas fa-times fa-xs">Delete</button>
+                <i className="fas fa-times fa-xs">Delete</i>
             </button>
 
             <button onClick={isEditing ? saveHandler : editHandler} className="edit-btn">

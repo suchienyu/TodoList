@@ -1,20 +1,39 @@
 import React from "react"
 import '../index.css';
 
-const Form = ({inputText, setInputText, todos, setTodos, setStatus }) => { 
-    function Inputhandlechange(event) {
+function Form  ({inputText, setInputText, todos, setTodos, setStatus })  { 
+    const Inputhandlechange=(event) =>{
        setInputText(event.target.value) 
     }
 
-    function submitHandleChange(event) {
-        event.preventDefault()
-        setTodos([
-            ...todos, 
-            { text: inputText, completed: false, id: Math.floor(Math.random() * 3000)}
-        ])
+    const submitHandleChange = async (event) => {
+        event.preventDefault();
+        const newTodo = { text: inputText, completed: false };
 
-        setInputText("")
-    }
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/todos`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newTodo)
+            });
+
+            const data = await response.json();
+            setTodos([...todos, data]); // 更新前端狀態
+        } catch (error) {
+            console.error('Error adding todo:', error);
+        }
+        //  setTodos([
+        //      ...todos, 
+        //      { text: inputText, completed: false}
+        //  ])
+        setInputText(""); // 清空輸入框
+    };
+        
+
+        //setInputText("")
+    
 
     function statusHandleChange(event){
         setStatus(event.target.value)
