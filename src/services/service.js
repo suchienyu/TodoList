@@ -1,12 +1,12 @@
 const apiBaseURL = process.env.REACT_APP_API_URL;
 
 export const getTodos = async () => {
-  const response = await fetch(API_URL);
+  const response = await fetch(apiBaseURL);
   return response.json();
 };
 
 export const addTodo = async (todo) => {
-  const response = await fetch(API_URL, {
+  const response = await fetch(apiBaseURL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ export const addTodo = async (todo) => {
 };
 
 export const deleteTodo = async (id) => {
-  const response = await fetch(`${API_URL}/${id}`, {
+  const response = await fetch(`${apiBaseURL}/${id}`, {
     method: 'DELETE',
   });
   return response.json();

@@ -1,6 +1,6 @@
 import React from "react"
 import '../index.css';
-
+const apiBaseURL = process.env.REACT_APP_API_URL;
 
 
 function Form  ({inputText, setInputText, todos, setTodos, setStatus })  { 
@@ -13,7 +13,7 @@ function Form  ({inputText, setInputText, todos, setTodos, setStatus })  {
         const newTodo = { text: inputText, completed: false };
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/todos`, {
+            const response = await fetch(`${apiBaseURL}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

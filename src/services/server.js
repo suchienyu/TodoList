@@ -10,17 +10,17 @@ app.use(bodyParser.json());
 
 let todos = [];
 
-app.get('${apiBaseURL}/todos', (req, res) => {
+app.get('/api/todos', (req, res) => {
   res.json(todos);
 });
 
-app.post('${apiBaseURL}/todos', (req, res) => {
+app.post('/api/todos', (req, res) => {
   const newTodo = req.body;
   todos.push(newTodo);
   res.json(newTodo);
 });
 
-app.delete('${apiBaseURL}/todos/:id', (req, res) => {
+app.delete('/api/todos/:id', (req, res) => {
   const { id } = req.params;
   todos = todos.filter(todo => todo.id !== id);
   res.json({ id });
