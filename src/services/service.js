@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5001/api/todos';
+const apiBaseURL = process.env.REACT_APP_API_URL;
 
 export const getTodos = async () => {
   const response = await fetch(API_URL);

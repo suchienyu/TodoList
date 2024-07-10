@@ -3,7 +3,7 @@ import './index.css';
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
 import { getTodos } from "./services/service";
-
+const apiBaseURL = process.env.REACT_APP_API_URL;
 function App() {
   const [inputText, setInputText] = useState("");
   const [todos, setTodos] = useState([]);
@@ -22,7 +22,7 @@ function App() {
 
   useEffect(() => {
     // 獲取 todos 數據
-    fetch('http://localhost:5001/api/todos')
+    fetch('${apiBaseURL}/todos')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');

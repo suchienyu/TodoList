@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
+const apiBaseURL = process.env.REACT_APP_API_URL;
 
 function Todo({ text, todo, todos, setTodos }) {
     const [isEditing, setIsEditing] = useState(false);
     const [newText, setNewText] = useState(todo.text);
-    // function deleteHandleChange(){
-    //     setTodos(todos.filter((el) => el.id !== todo.id))
-    // }
 
     const CompleteHandleChange=()=>{
         setTodos(todos.map((item) => {
@@ -21,7 +19,7 @@ function Todo({ text, todo, todos, setTodos }) {
 
     const deleteHandler = () =>{
         // 发送 DELETE 请求到后端
-        fetch(`http://localhost:5001/api/todos/${todo.id}`, {
+        fetch(`${apiBaseURL}/todos/${todo.id}`, {
           method: 'DELETE',
           headers: {
               'Content-Type': 'application/json'
@@ -62,7 +60,7 @@ function Todo({ text, todo, todos, setTodos }) {
     const saveHandler = () => {
         // 發送patch請求到後端
         console.log('todo',todo);
-        fetch(`http://localhost:5001/api/todos/${todo.id}`, {
+        fetch(`${apiBaseURL}/todos/${todo.id}`, {
           method: 'PATCH',
           headers: {
               'Content-Type': 'application/json'
@@ -88,6 +86,9 @@ function Todo({ text, todo, todos, setTodos }) {
       });
       };
     
+      if (!todo || !todo.text) {
+        return null; // 或顯示某些佔位內容
+    }
     return(
       
     <div className="todo">
@@ -100,17 +101,6 @@ function Todo({ text, todo, todos, setTodos }) {
                 />
               ) 
         }
-        {/* {isEditing ? (
-        <input
-          type="text"
-          value={newText}
-          onChange={(e) => setNewText(e.target.value)}
-        />
-      ) : (
-        <li className={`todo-item ${todo.completed ? 'completed' : ''}`}>
-          
-        </li>
-      )} */}
             <button className="check-btn" onClick={CompleteHandleChange}>
                 <i className={`fas fa-check fa-xs ${todo.completed? "completed-checkbox" : ""}`}></i>
             </button>
