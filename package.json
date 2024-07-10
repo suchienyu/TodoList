@@ -1,6 +1,5 @@
 {
   "name": "todo-app",
-  "homepage": "https://localhost:5001/todos",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,8 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy":"npm run build",
-    "deploy":"gh-pages"
+    "postbuild":"sudo cp -r /home/ubuntu/TodoList.github.io/build/. /var/www/html"
   },
   "eslintConfig": {
     "extends": [
