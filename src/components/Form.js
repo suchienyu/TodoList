@@ -13,7 +13,7 @@ function Form  ({inputText, setInputText, todos, setTodos, setStatus })  {
         const newTodo = { text: inputText, completed: false };
 
         try {
-            const response = await fetch(`${apiBaseURL}`, {
+            const response = await fetch(`${apiBaseURL}api/todos`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

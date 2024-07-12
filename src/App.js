@@ -23,7 +23,7 @@ function App() {
   useEffect(() => {
     // 獲取 todos 數據
     console.log('apiBaseURL',apiBaseURL)
-    fetch(`${apiBaseURL}`)
+    fetch(`${apiBaseURL}api/todos`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');

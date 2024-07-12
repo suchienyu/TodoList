@@ -19,7 +19,7 @@ function Todo({ text, todo, todos, setTodos }) {
 
     const deleteHandler = () =>{
         // 发送 DELETE 请求到后端
-        fetch(`${apiBaseURL}/${todo.id}`, {
+        fetch(`${apiBaseURL}api/todos/${todo.id}`, {
           method: 'DELETE',
           headers: {
               'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ function Todo({ text, todo, todos, setTodos }) {
     const saveHandler = () => {
         // 發送patch請求到後端
         console.log('todo',todo);
-        fetch(`${apiBaseURL}/${todo.id}`, {
+        fetch(`${apiBaseURL}api/todos/${todo.id}`, {
           method: 'PATCH',
           headers: {
               'Content-Type': 'application/json'
